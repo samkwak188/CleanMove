@@ -370,6 +370,13 @@ export default function Home() {
           drawText("[Video attached]", 9, rgb(0.3, 0.3, 0.3));
           return;
         }
+
+        const label =
+          photo.addedAt && photo.addedAt.trim().length > 0
+            ? formatDateTimeLabel(photo.addedAt)
+            : "Capture time unavailable";
+
+        // 1) Embed and draw the image
         try {
           const { mimeType, bytes } = dataUrlToBytes(photo.dataUrl);
           const isPng = mimeType.includes("png");
@@ -390,13 +397,17 @@ export default function Home() {
             height: imgHeight,
           });
           y -= imgHeight + 4;
-          drawText(
-            `Captured: ${formatDateTimeLabel(photo.addedAt)}`,
-            8,
-            rgb(0.4, 0.4, 0.4)
-          );
-        } catch {
+        } catch (err) {
+          console.error("Failed to embed image into PDF:", err);
           drawText("[Image could not be embedded]", 9, rgb(0.8, 0.2, 0.2));
+          return; // don't try to draw a timestamp if the image failed
+        }
+
+        // 2) Draw the timestamp separately so it can't trigger the image error
+        try {
+          drawText(`Captured: ${label}`, 8, rgb(0.4, 0.4, 0.4));
+        } catch (err) {
+          console.error("Failed to draw image timestamp in PDF:", err);
         }
       };
 
