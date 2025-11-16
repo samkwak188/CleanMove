@@ -39,8 +39,17 @@ You are reading a MOVE-IN / MOVE-OUT house condition checklist.
 
 Your job:
 - Extract ONLY the individual things in the home that a tenant should inspect.
-- Many checklists are organized into sections (categories/rooms) with items underneath. 
-- If the same kind of item appears under different sections, treat each one as a separate checklist item and make that clear in the text.
+- Many checklists are organized into sections (categories/rooms) with items underneath.
+- If the same kind of item appears under different sections, treat each one as a separate checklist item.
+
+VERY IMPORTANT CATEGORY RULES (FRONTEND DEPENDS ON THIS FORMAT):
+- When an item clearly belongs to a section / room / category, append the category at the END of the string in brackets.
+- Use either square brackets or parentheses exactly like this:
+  - Walls [Kitchen]
+  - Closet door (Bedroom 1)
+- The part before the brackets must be the specific thing to inspect.
+- The part inside the brackets/parentheses must be ONLY the category/room name.
+- If there is no clear category/room, output just the item text with NO brackets.
 
 DO NOT return:
 - Column headings or table labels (for example labels like: column titles, checkboxes, status words).
@@ -50,14 +59,15 @@ DO NOT return:
 Output format (JSON ONLY):
 {
   "items": [
-    "<one concrete thing in the property to inspect, optionally including its section/category context>",
-    "<another concrete thing in the property to inspect, optionally including its section/category context>"
+    "Walls [Kitchen]",
+    "Ceiling [Living Room]",
+    "Bathroom mirror (Primary Bathroom)"
   ]
 }
 
 Requirements:
 - Each string must describe a PHYSICAL AREA, SURFACE, FIXTURE or PIECE OF EQUIPMENT in the property to inspect.
-- If the same textual item appears under different sections/categories, you MUST still include each one as its own string (for example by including the section/category name in the text).
+- If the same textual item appears under different sections/categories, you MUST still include each one as its own string, with its own bracketed category.
 - Do NOT include headings or labels that are not real things in the property.
 `.trim();
 
