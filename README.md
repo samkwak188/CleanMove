@@ -1,6 +1,6 @@
 # 🏠 ClearMove - Your ultimate rent consultant
 
-> ClearMove – Evidence, not arguments. Secure your wallet. ClearMove protects your rights as a renter by turning your lease, checklists, and move-in/out photos into organized, shareable evidence—so deposit disputes are decided by facts, not fights.
+ClearMove – Evidence, not arguments. Secure your wallet. ClearMove protects your rights as a renter by turning your lease, checklists, and move-in/out photos into organized, shareable evidence—so deposit disputes are decided by facts, not fights.
 
 This project was built for **Badger Build Festival 2025** at **UW–Madison**,  
 hosted by the **Cursor AI Club** and **Badger Blockchain**, and sponsored by:  
